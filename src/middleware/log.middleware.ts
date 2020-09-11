@@ -4,27 +4,7 @@ import { Injectable, NestMiddleware } from '@nestjs/common';
 @Injectable()
 export class LogMiddleware implements NestMiddleware {
   async use(req: Request |any, res: any, next: () => void) {
-    console.log('middleware');
-    res.setHeader('Access-Control-Allow-Credentials',true);
-    res.setHeader('Access-Control-Allow-Origin','http://localhost:8081');
-    req.session.name = 'chenao';
-    // if(!req.session.info){
-    //   req.session.info = {}
-    // }
-    // if(!req.cookies.name){
-    //   console.log('set cookies');
-    //   res.cookie('name','zhangsan',{maxAge: 900000, httpOnly: false});
-    // }
-    // console.log(req.cookies.name,'cookies');
-    // res.send('middle')
-    // res.on('finish',()=>{
-    //   console.log('finish')
-    // })
-    // res._end = res.end;
-    // res.end=function(){
-    //   res._end.apply(res,arguments)
-    //   console.log('end')
-    // }
+    // console.log('middleware',req.session);
     next();
   }
 }

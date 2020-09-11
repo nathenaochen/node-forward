@@ -9,7 +9,7 @@ export function initRedisConnect(){
       //默认链接127.0.0.1:6379 端口的redis服务
       redisClient = new redis();
     }catch(err){
-      throw Error(err);
+      throw new Error(err);
     }
   }
   // console.log('redis--1');
@@ -36,7 +36,7 @@ export function initRedisConnect(){
       if(!str){
         req.session = {}
       }else{
-        req.seession = JSON.parse(str)
+        req.session = JSON.parse(str)
       }
 
       next();
@@ -45,7 +45,5 @@ export function initRedisConnect(){
       if(!req.session) req.session = {};
       redisClient.set(sid,JSON.stringify(req.session),'ex',60*30)
     });
-
-  
   }
 }

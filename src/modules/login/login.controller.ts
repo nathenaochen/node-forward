@@ -1,7 +1,7 @@
 import { Controller, Get, Query, Request, Response, UseInterceptors } from '@nestjs/common';
 import {ApiTags} from '@nestjs/swagger';
 import {LoginService} from './login.service';
-import {UserInfo} from '../dto/userinfo.dto';
+import {UserInfo} from '../../dto/userinfo.dto';
 
 @Controller('login')
 @ApiTags('login')

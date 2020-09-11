@@ -25,9 +25,19 @@ export class InterceptorTestInterceptor implements NestInterceptor {
     //   return of([]);
     // }
     this.logger.log({
-      sid:req.cookies['sid']
-    },'cur Request')
-    return next.handle().pipe(map((data)=>{console.log('interceptor--gloab--after');return resData.success(data || {});}));
+      sid:req.cookies['sid'],
+      reqBody:req.body,
+      reqQuery:req.query,
+      url:req.url
+    },'curl Request')
+    return next.handle().pipe(map((data)=>{
+      console.log('interceptor--gloab--after');
+      this.logger.log({
+        sid:req.cookies['sid'],
+        url:req.url,
+        response: data
+      },'curl Response')
+      return resData.success(data || {});}));
     // return next.handle().pipe(timeout(400))
   }
 }

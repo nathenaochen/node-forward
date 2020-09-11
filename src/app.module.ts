@@ -10,8 +10,9 @@ import {HttpExceptionFilter} from './filter/http-exception.filter';
 import { ConfService } from './conf/conf.service';
 import { ConfModule } from './conf/conf.module';
 import { ConfigNestModule } from './config-nest/config-nest.module';
-import { LoginModule } from './login/login.module';
+import { LoginModule } from './modules/login/login.module';
 import {WinstonModule,utilities} from 'nest-winston';
+import { ApiModule } from './modules/api/api.module';
 import os = require('os');
 import winston = require('winston');
 import winstonDailyRotateFile = require('winston-daily-rotate-file');
@@ -58,7 +59,7 @@ if(os.platform() == 'win32'){
                   // json:true
                 })
               ]
-            })],
+            }), ApiModule],
   // imports: [NewsModule,TestModule, ConfigNestModule],
   controllers: [AppController],
   providers: [AppService,{provide:APP_GUARD,useClass:AuthguardGuard},{provide:APP_PIPE,useClass:ParesInitPipe},

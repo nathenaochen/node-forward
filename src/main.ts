@@ -13,6 +13,8 @@ import {initRedisConnect} from './libs/redis-connect';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule,{cors:false,logger:true});
 
+  app.setGlobalPrefix('forward');
+
   
   app.use(cookieParser());
 
