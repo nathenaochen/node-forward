@@ -1,7 +1,7 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor,Inject, Logger } from '@nestjs/common';
 import { Observable, of } from 'rxjs';
 import {map,timeout} from 'rxjs/operators';
-import {resData} from '../dto/res.fto';
+import {resData} from '../dto/res.dto';
 import {WINSTON_MODULE_NEST_PROVIDER} from 'nest-winston';
 
 /**
@@ -19,7 +19,7 @@ export class InterceptorTestInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const res = context.switchToHttp().getResponse();
     const req = context.switchToHttp().getRequest();
-    console.log('interceptor--gloab');
+    // console.log('interceptor--gloab');
     // const isCached = true;
     // if (isCached) {
     //   return of([]);
@@ -31,13 +31,13 @@ export class InterceptorTestInterceptor implements NestInterceptor {
       url:req.url
     },'curl Request')
     return next.handle().pipe(map((data)=>{
-      console.log('interceptor--gloab--after');
+      // console.log('interceptor--gloab--after');
       this.logger.log({
         sid:req.cookies['sid'],
         url:req.url,
         response: data
-      },'curl Response')
-      return resData.success(data || {});}));
+      },'curl Response');
+      return data;}));
     // return next.handle().pipe(timeout(400))
   }
 }

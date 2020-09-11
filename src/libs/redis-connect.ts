@@ -12,7 +12,7 @@ export function initRedisConnect(){
       throw new Error(err);
     }
   }
-  // console.log('redis--1');
+  console.log('redis--1');
 
   //自定义express中间件，优先于nestjs中间件模块先执行
   return function(req,res,next){

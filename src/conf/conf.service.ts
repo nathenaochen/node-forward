@@ -8,8 +8,9 @@ import {parse} from 'dotenv';
 export class ConfService {
   envConfig:object
   constructor(@Inject('OPTION') filename: string){
-    // console.log(resolve(__dirname,'../' + filename));
+    console.log(resolve(__dirname,'../' + filename));
     let envConfig = parse(readFileSync(filename));
+    console.log(envConfig);
     this.envConfig = envConfig;
     // console.log(envConfig);
   }

@@ -5,6 +5,7 @@
 /testfangzhen.env
 /package-lock.json
 /log
+/development.env
 
 # Logs
 logs

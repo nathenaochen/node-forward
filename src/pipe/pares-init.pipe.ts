@@ -1,7 +1,6 @@
 import { ArgumentMetadata, Injectable, PipeTransform , BadRequestException, HttpException} from '@nestjs/common';
 import {plainToClass,classToPlain} from 'class-transformer';
 import {validate} from 'class-validator';
-import {LoginInfo} from '../dto/login.dto';
 import {ConfService} from '../conf/conf.service';
 import {ConfigService} from '@nestjs/config';
 
@@ -10,7 +9,7 @@ export class ParesInitPipe implements PipeTransform {
   constructor(private readonly ConfService:ConfService){
   }
   async transform(value: any, metadata: ArgumentMetadata) {
-    console.log('pipe',value,metadata);
+    // console.log('pipe',value,metadata);
     if (!metadata.metatype || !this.toValidate(metadata.metatype)) {
       return value;
     }
@@ -21,7 +20,6 @@ export class ParesInitPipe implements PipeTransform {
     }else{
       return value;
     }
-    // return value;
   }
   private toValidate(type :Function) : Boolean{
     let arrName: Function[] = [Object, String ,Boolean, Number, Array];

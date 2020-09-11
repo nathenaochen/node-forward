@@ -30,6 +30,7 @@ async function bootstrap() {
   .build()
   const doc = SwaggerModule.createDocument(app,option);
   SwaggerModule.setup('api-node-forward',app,doc);
-  await app.listen(3001);
+  await app.listen('8888');
+  console.log('成功监听端口8888');
 }
 bootstrap(); 

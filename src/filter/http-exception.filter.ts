@@ -1,6 +1,6 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, Inject, Logger } from '@nestjs/common';
 import {Request, Response} from 'express';
-import {resData} from '../dto/res.fto';
+import {resData} from '../dto/res.dto';
 import {WINSTON_MODULE_PROVIDER} from 'nest-winston';
 
 @Catch()

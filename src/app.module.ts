@@ -16,7 +16,7 @@ import { ApiModule } from './modules/api/api.module';
 import os = require('os');
 import winston = require('winston');
 import winstonDailyRotateFile = require('winston-daily-rotate-file');
-// console.log('mm==--',process.env.NODE_ENV, os.platform());
+console.log('mm==--',process.env.NODE_ENV, os.platform());
 
 if(os.platform() == 'win32'){
   if(process.env.NODE_ENV == 'development'){

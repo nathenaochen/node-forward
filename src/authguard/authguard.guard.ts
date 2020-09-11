@@ -12,7 +12,7 @@ export class AuthguardGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    console.log('guard');
+    // console.log('guard');
     const req = context.switchToHttp().getRequest();
     let roles = this.relector.get('roles',context.getHandler());
     // console.log(roles,'roles');
