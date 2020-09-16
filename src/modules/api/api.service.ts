@@ -19,13 +19,21 @@ export class ApiService {
       reqQuery:params,
       url:serviceUri
     }),'api Request')
-    const res = (await this.httpService.get(url,{params:params}).toPromise()).data;
-    this.logger.log(JSON.stringify({
-      sid:req.cookies['sid'],
-      url:serviceUri,
-      data:res
-    }),'api Response')
-    return resData.success(res);
+    try{
+      const res = (await this.httpService.get(url,{params:params}).toPromise()).data;
+      this.logger.log(JSON.stringify({
+        sid:req.cookies['sid'],
+        url:serviceUri,
+        data:res
+      }),'api Response')
+      if(res.code != 0){
+        throw new Error(`请求真正服务报错，报错原因:${res.errorMeg}`);
+      }
+      return resData.success(res);
+    }catch(err){
+      throw new Error(err.message);
+    }
+    
   }
 
   async PostRequest(params,req):Promise<resData<object>>{
@@ -40,12 +48,19 @@ export class ApiService {
       reqBody:params,
       url:serviceUri
     }),'api Request')
-    const res = (await this.httpService.post(url,params).toPromise()).data;
-    this.logger.log(JSON.stringify({
-      sid:req.cookies['sid'],
-      url:serviceUri,
-      data:res
-    }),'api Response')
-    return resData.success(res);
+    try{
+      const res = (await this.httpService.post(url,params).toPromise()).data;console.log(res,1111);
+      this.logger.log(JSON.stringify({
+        sid:req.cookies['sid'],
+        url:serviceUri,
+        data:res
+      }),'api Response')
+      if(res.code != 0){
+        throw new Error(`请求真正服务报错，报错原因:${res.errorMeg}`);
+      }
+      return resData.success(res);
+    }catch(err){
+      throw new Error(err.message);
+    }
   }
 }
