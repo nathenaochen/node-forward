@@ -18,6 +18,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       this.logger.error(exception.getResponse(),'error trace','error message')
       response.status(status).send(resData.fail({},exception.getResponse()));
     }else{
+      // console.log(exception,'11');
       this.logger.error(exception.message,'error trace','error message');
       response.status(500).send(resData.fail({},exception.message));
     }

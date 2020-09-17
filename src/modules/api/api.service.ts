@@ -31,7 +31,11 @@ export class ApiService {
       }
       return resData.success(res);
     }catch(err){
-      throw new Error(err.message);
+      if(err.response){
+        throw new Error(JSON.stringify(err.response.data.errorMeg) );
+      }else{
+        throw new Error(err.message);
+      }
     }
     
   }
@@ -46,10 +50,10 @@ export class ApiService {
     this.logger.log(JSON.stringify({
       sid:req.cookies['sid'],
       reqBody:params,
-      url:serviceUri
+      url:url
     }),'api Request')
     try{
-      const res = (await this.httpService.post(url,params).toPromise()).data;console.log(res,1111);
+      const res = (await this.httpService.post(url,params).toPromise()).data;
       this.logger.log(JSON.stringify({
         sid:req.cookies['sid'],
         url:serviceUri,
@@ -60,7 +64,13 @@ export class ApiService {
       }
       return resData.success(res);
     }catch(err){
-      throw new Error(err.message);
+      console.log(err,'10');
+      if(err.response){
+        throw new Error(JSON.stringify(err.response.data.errorMeg) );
+      }else{
+        throw new Error(err.message);
+      }
+      
     }
   }
 }
