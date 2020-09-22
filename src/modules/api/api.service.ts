@@ -27,9 +27,9 @@ export class ApiService {
         data:res
       }),'api Response')
       if(res.code != 0){
-        throw new Error(`请求真正服务报错，报错原因:${res.errorMeg}`);
+        throw new Error(`${res.errorMeg}`);
       }
-      return resData.success(res);
+      return resData.success(res.result);
     }catch(err){
       if(err.response){
         throw new Error(JSON.stringify(err.response.data.errorMeg) );
@@ -60,9 +60,9 @@ export class ApiService {
         data:res
       }),'api Response')
       if(res.code != 0){
-        throw new Error(`请求真正服务报错，报错原因:${res.errorMeg}`);
+        throw new Error(`${res.errorMeg}`);
       }
-      return resData.success(res);
+      return resData.success(res.result);
     }catch(err){
       console.log(err,'10');
       if(err.response){
