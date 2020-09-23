@@ -25,11 +25,14 @@ export class ApiService {
         sid:req.cookies['sid'],
         url:serviceUri,
         data:res
-      }),'api Response')
-      if(res.code != 0){
+      }),'api Response');
+      if(res.code == '0'){
+        return resData.success(res.result,'0');
+      }else if(res.code == '-1'){
+        return resData.fail(res.result,res.errorMeg,'-1');
+      }else{
         throw new Error(`${res.errorMeg}`);
       }
-      return resData.success(res.result);
     }catch(err){
       if(err.response){
         throw new Error(JSON.stringify(err.response.data.errorMeg) );
@@ -59,10 +62,13 @@ export class ApiService {
         url:serviceUri,
         data:res
       }),'api Response')
-      if(res.code != 0){
+      if(res.code == '0'){
+        return resData.success(res.result,'0');
+      }else if(res.code == '-1'){
+        return resData.fail(res.result,res.errorMeg,'-1');
+      }else{
         throw new Error(`${res.errorMeg}`);
       }
-      return resData.success(res.result);
     }catch(err){
       console.log(err,'10');
       if(err.response){
